@@ -95,10 +95,15 @@ describe("projects", () => {
     }
   });
 
-  it("links only to https deployments, and never to the same place twice", () => {
+  it("links only to absolute https deployments, and never to the same place twice", () => {
     for (const project of projects) {
       if (!project.live) continue;
-      expect(project.live, project.slug).toMatch(/^https:\/\/[\w.-]+\/.+/);
+      // Parse it rather than pattern-match: `new URL` rejects anything that is not
+      // absolute, and this previously failed a bare host like
+      // "https://foo.vercel.app" because a hand-rolled regex demanded a path.
+      const url = new URL(project.live);
+      expect(url.protocol, project.slug).toBe("https:");
+      expect(url.hostname, project.slug).toContain(".");
       // A "live" link that just points at the repo is a mislabelled source link.
       expect(project.live, project.slug).not.toBe(project.repo);
     }
