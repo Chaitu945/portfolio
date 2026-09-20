@@ -74,6 +74,8 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js", "TypeScript", "Tailwind CSS"],
     status: "In progress",
+    repo: "https://github.com/Chaitu945/control-room",
+    live: "https://control-room-chaitu945s-projects.vercel.app",
   },
   {
     slug: "nft-mint-rarity-toolkit",
