@@ -1,0 +1,11 @@
+# Normalise to LF in the repository, so a Windows checkout with
+# core.autocrlf=true does not commit CRLF and make CI diff the whole tree.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+
+package-lock.json -diff linguist-generated
