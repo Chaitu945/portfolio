@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/data/profile";
@@ -14,6 +14,12 @@ export const metadata: Metadata = {
     description: profile.tagline,
     type: "website",
   },
+};
+
+// Paints the mobile browser chrome to match the page background, so it does not
+// flash white above a dark site. Lives in `viewport`, not `metadata`.
+export const viewport: Viewport = {
+  themeColor: "#0a0a0b",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
