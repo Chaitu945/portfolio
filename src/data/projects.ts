@@ -10,6 +10,10 @@
  * game is the strongest thing on this page, so it links to the game itself
  * rather than making someone read a repository first.
  *
+ * `shot` is a screenshot in /public, captured from the running thing rather than
+ * mocked up. Alt text is required wherever one is used — a portfolio that fails
+ * at accessibility is a worse signal than one with no images.
+ *
  * Written in plain language deliberately. "Built a thing" beats "leveraged
  * synergies", and every claim here should survive being asked about.
  */
@@ -29,6 +33,10 @@ export interface Project {
   live?: string;
   /** Label for the `live` link. Defaults to "live". */
   liveLabel?: string;
+  /** Screenshot served from /public, e.g. "/shots/hood-hop.png". */
+  shot?: string;
+  /** Alt text for the screenshot. Required whenever `shot` is set. */
+  shotAlt?: string;
 }
 
 export const projects: Project[] = [
@@ -47,20 +55,9 @@ export const projects: Project[] = [
     repo: "https://github.com/Chaitu945/MonkeyHood-hop",
     live: "https://chaitu945.github.io/MonkeyHood-hop/",
     liveLabel: "play",
-  },
-  {
-    slug: "wallet-tracker-bot",
-    title: "Wallet Tracker Bot",
-    summary:
-      "A Discord bot that watches wallets across chains and posts an alert when one of them trades, with per-token cost-basis PnL.",
-    highlights: [
-      "85 unit tests, CI green on Node 20, 22 and 24",
-      "Tracked down a price bug that quietly returned another chain's market for the same token address — USDC read as $0.0009 instead of $1",
-      "`npm run check-keys` verifies every credential against the live API, because a well-formed key can still be revoked",
-    ],
-    stack: ["Node.js", "discord.js", "SQLite", "GitHub Actions"],
-    status: "Shipped",
-    repo: "https://github.com/Chaitu945/Wallet-Tracker-Bot",
+    shot: "/shots/hood-hop.png",
+    shotAlt:
+      "Hood Hop's character-select screen: four pixel-art monkeys named Skele Monk, Deadpool Monk, Cyber Monk and Suit Monk, with the game title and controls below",
   },
   {
     slug: "control-room",
@@ -76,6 +73,23 @@ export const projects: Project[] = [
     status: "In progress",
     repo: "https://github.com/Chaitu945/control-room",
     live: "https://control-room-chaitu945s-projects.vercel.app",
+    shot: "/shots/control-room.png",
+    shotAlt:
+      "The Control Room dashboard: an NFT Finder panel marked live, with chain, contract address and wallet inputs above a Find holders button, and two panels marked planned below it",
+  },
+  {
+    slug: "wallet-tracker-bot",
+    title: "Wallet Tracker Bot",
+    summary:
+      "A Discord bot that watches wallets across chains and posts an alert when one of them trades, with per-token cost-basis PnL.",
+    highlights: [
+      "85 unit tests, CI green on Node 20, 22 and 24",
+      "Tracked down a price bug that quietly returned another chain's market for the same token address — USDC read as $0.0009 instead of $1",
+      "`npm run check-keys` verifies every credential against the live API, because a well-formed key can still be revoked",
+    ],
+    stack: ["Node.js", "discord.js", "SQLite", "GitHub Actions"],
+    status: "Shipped",
+    repo: "https://github.com/Chaitu945/Wallet-Tracker-Bot",
   },
   {
     slug: "nft-mint-rarity-toolkit",

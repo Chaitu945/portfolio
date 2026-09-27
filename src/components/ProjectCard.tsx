@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import type { Project, Status } from "@/data/projects";
 
 const STATUS_TONE: Record<Status, string> = {
@@ -32,6 +34,19 @@ export function ProjectCard({ project }: { project: Project }) {
           {project.status}
         </span>
       </div>
+
+      {/* Captured from the running thing, not mocked up. Placed above the summary
+          so the visual lands before the description explains it. */}
+      {project.shot ? (
+        <Image
+          src={project.shot}
+          alt={project.shotAlt ?? `${project.title} screenshot`}
+          width={1280}
+          height={800}
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="mt-4 w-full rounded-md border border-line"
+        />
+      ) : null}
 
       <p className="mt-2.5 text-sm leading-relaxed text-muted">{project.summary}</p>
 
