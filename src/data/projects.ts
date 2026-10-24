@@ -78,19 +78,6 @@ export const projects: Project[] = [
       "The Control Room dashboard: an NFT Finder panel marked live, with chain, contract address and wallet inputs above a Find holders button, and two panels marked planned below it",
   },
   {
-    slug: "floorcheck",
-    title: "Floorcheck",
-    summary:
-      "A live OpenSea floor tracker, built on the official API after reverse-engineering how opensea.io loads its own data, with a box for checking its numbers against the site.",
-    highlights: [
-      "Mapped opensea.io's front end with REA, an MCP reverse-engineering tool: 263 scripts, about 360 GraphQL operations and live websocket subscriptions, then rebuilt the feature on the public API instead of the private one",
-      "Side-by-side checks against the site found three real differences: listings from other marketplaces missing from the API, the same NFT listed several times, and unrounded prices",
-      "The API key stays on the local server and never reaches the page",
-    ],
-    stack: ["Node.js", "JavaScript", "OpenSea API"],
-    status: "Internal tool",
-  },
-  {
     slug: "wallet-tracker-bot",
     title: "Wallet Tracker Bot",
     summary:
