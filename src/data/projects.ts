@@ -78,6 +78,19 @@ export const projects: Project[] = [
       "The Control Room dashboard: an NFT Finder panel marked live, with chain, contract address and wallet inputs above a Find holders button, and two panels marked planned below it",
   },
   {
+    slug: "floorcheck",
+    title: "Floorcheck",
+    summary:
+      "A live OpenSea floor tracker, built on the official API after reverse-engineering how opensea.io loads its own data, with a box for checking its numbers against the site.",
+    highlights: [
+      "Mapped opensea.io's front end with REA, an MCP reverse-engineering tool: 263 scripts, about 360 GraphQL operations and live websocket subscriptions, then rebuilt the feature on the public API instead of the private one",
+      "Side-by-side checks against the site found three real differences: listings from other marketplaces missing from the API, the same NFT listed several times, and unrounded prices",
+      "The API key stays on the local server and never reaches the page",
+    ],
+    stack: ["Node.js", "JavaScript", "OpenSea API"],
+    status: "Internal tool",
+  },
+  {
     slug: "wallet-tracker-bot",
     title: "Wallet Tracker Bot",
     summary:
@@ -90,6 +103,19 @@ export const projects: Project[] = [
     stack: ["Node.js", "discord.js", "SQLite", "GitHub Actions"],
     status: "Shipped",
     repo: "https://github.com/Chaitu945/Wallet-Tracker-Bot",
+  },
+  {
+    slug: "chaitu-toolkit",
+    title: "Chaitu Toolkit",
+    summary:
+      "A private Discord bot for my own server: OpenSea floor and listings on demand, and mint-eligibility checks across my wallets without the bot ever handling a private key.",
+    highlights: [
+      "Eligibility runs a local CLI as a child process in its own folder and posts only its printed summary, so keys and the vault password never pass through the bot or Discord",
+      "Commands are registered to one server only and refused anywhere else, with an optional lock to a single Discord user",
+      "Tests drive a stand-in CLI through success, failure, missing-setup and concurrent-run cases",
+    ],
+    stack: ["Node.js", "discord.js", "OpenSea API"],
+    status: "Internal tool",
   },
   {
     slug: "nft-mint-rarity-toolkit",
@@ -133,8 +159,11 @@ export const projects: Project[] = [
       "A multichain mint runner with scheduled runs, gas-price waiting and per-wallet results, built to run unattended on a VPS.",
     highlights: [
       "Waits for a gas threshold before firing and runs each wallet independently, so one failure does not abort the batch",
+      "Simulates every mint with a free call first and skips any wallet whose mint would revert, so a closed or sold-out drop costs no gas",
+      "Fails over to a backup RPC, and watches both the original and the sped-up transaction so a confirmed mint is never reported as failed",
+      "Tested against a local chain across nine scenarios, including a closed mint, a wrong price, a stuck transaction and an RPC outage",
     ],
-    stack: ["Node.js"],
+    stack: ["Node.js", "ethers.js"],
     status: "Internal tool",
   },
   {
