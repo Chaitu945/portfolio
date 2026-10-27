@@ -8,6 +8,9 @@ export const profile = {
   name: "Krishna Chaitanya",
   handle: "Chaitu945",
 
+  /** What kind of work you are looking for. Shown as a badge in the hero. */
+  lookingFor: "Open to front-end and AI tooling roles",
+
   /** One line. Shown under the name. */
   tagline: "I build small tools that watch the chain and make it readable.",
 

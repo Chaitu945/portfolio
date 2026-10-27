@@ -140,3 +140,35 @@ describe("projects", () => {
     }
   });
 });
+
+describe("featured work", () => {
+  const featured = projects.filter((p) => p.featured);
+
+  it("features a small, scannable set", () => {
+    // Too few looks thin; too many and "featured" stops meaning anything.
+    expect(featured.length).toBeGreaterThanOrEqual(2);
+    expect(featured.length).toBeLessThanOrEqual(6);
+  });
+
+  it("gives every featured project something to look at", () => {
+    // A featured card with no screenshot and no output is just a bigger text block.
+    for (const project of featured) {
+      expect(Boolean(project.shot || project.terminal), project.slug).toBe(true);
+    }
+  });
+
+  it("keeps terminal output real-looking and labelled", () => {
+    for (const project of projects.filter((p) => p.terminal)) {
+      expect(project.terminal!.caption.trim(), project.slug).not.toBe("");
+      expect(project.terminal!.lines.length, project.slug).toBeGreaterThan(0);
+      expect(project.terminal!.lines.length, project.slug).toBeLessThanOrEqual(12);
+    }
+  });
+});
+
+describe("profile badge", () => {
+  it("says what kind of work is wanted, in one short line", () => {
+    expect(profile.lookingFor.trim()).not.toBe("");
+    expect(profile.lookingFor.length).toBeLessThanOrEqual(60);
+  });
+});

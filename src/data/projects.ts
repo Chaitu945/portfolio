@@ -37,6 +37,16 @@ export interface Project {
   shot?: string;
   /** Alt text for the screenshot. Required whenever `shot` is set. */
   shotAlt?: string;
+  /**
+   * Shown in the "Featured" grid at the top of the page instead of the compact
+   * list. Featured projects need something to show: a screenshot or real output.
+   */
+  featured?: boolean;
+  /**
+   * Real terminal output from the running thing, for projects with no screen to
+   * capture. Lines may be shortened (long hashes), never invented.
+   */
+  terminal?: { caption: string; lines: string[] };
 }
 
 export const projects: Project[] = [
@@ -55,6 +65,7 @@ export const projects: Project[] = [
     repo: "https://github.com/Chaitu945/MonkeyHood-hop",
     live: "https://chaitu945.github.io/MonkeyHood-hop/",
     liveLabel: "play",
+    featured: true,
     shot: "/shots/hood-hop.png",
     shotAlt:
       "Hood Hop's character-select screen: four pixel-art monkeys named Skele Monk, Deadpool Monk, Cyber Monk and Suit Monk, with the game title and controls below",
@@ -73,6 +84,7 @@ export const projects: Project[] = [
     status: "In progress",
     repo: "https://github.com/Chaitu945/control-room",
     live: "https://control-room-chaitu945s-projects.vercel.app",
+    featured: true,
     shot: "/shots/control-room.png",
     shotAlt:
       "The Control Room dashboard: an NFT Finder panel marked live, with chain, contract address and wallet inputs above a Find holders button, and two panels marked planned below it",
@@ -90,6 +102,10 @@ export const projects: Project[] = [
     stack: ["Node.js", "discord.js", "SQLite", "GitHub Actions"],
     status: "Shipped",
     repo: "https://github.com/Chaitu945/Wallet-Tracker-Bot",
+    featured: true,
+    shot: "/shots/wallet-tracker.png",
+    shotAlt:
+      "A buy alert posted by the bot in Discord, rendered from sample data: token PEPEHAT on Robinhood Chain, with wallet, token address, amount, USD value, price, market cap and a DexScreener chart link",
   },
   {
     slug: "chaitu-toolkit",
@@ -152,6 +168,23 @@ export const projects: Project[] = [
     ],
     stack: ["Node.js", "ethers.js"],
     status: "Internal tool",
+    featured: true,
+    terminal: {
+      caption: "Real output from a test run on a local chain, with long hashes shortened",
+      lines: [
+        "WARNING Ethereum: main RPC is down, using backup RPC",
+        "=== ETH-1 — Test drop (Ethereum): minting from 2 wallet(s) ===",
+        "SUBMITTED [ETH-1] W1 (0x90F8bf...): 0x3370…55b0",
+        "SUBMITTED [ETH-1] W2 (0xFFcf8F...): 0x8bb6…f7e8",
+        "STUCK [ETH-1] W1: no confirmation within 6000ms, resubmitting with double gas (same nonce 0)",
+        "STUCK [ETH-1] W2: no confirmation within 6000ms, resubmitting with double gas (same nonce 0)",
+        "RESUBMITTED [ETH-1] W1 (0x90F8bf...): 0x9390…7888",
+        "RESUBMITTED [ETH-1] W2 (0xFFcf8F...): 0x2503…c265",
+        "SUCCESS [ETH-1] W1 (0x90F8bf...): minted in block 2",
+        "SUCCESS [ETH-1] W2 (0xFFcf8F...): minted in block 2",
+        "ETH-1 (Test drop): 2/2 wallets minted successfully",
+      ],
+    },
   },
   {
     slug: "translator-bot",
