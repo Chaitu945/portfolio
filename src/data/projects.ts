@@ -168,6 +168,7 @@ export const projects: Project[] = [
     ],
     stack: ["Node.js", "ethers.js"],
     status: "Internal tool",
+    repo: "https://github.com/Chaitu945/mint-runner",
     featured: true,
     terminal: {
       caption: "Real output from a test run on a local chain, with long hashes shortened",
